@@ -1,16 +1,23 @@
-import chromium from "chrome-aws-lambda";
-import puppeteer from "puppeteer-core";
+const chrome = require("chrome-aws-lambda");
+const puppeteer = require("puppeteer-core");
 // import { getCampaignInfo } from "../../external-functions/gofundme.js";
 
 export default async function handler(req, res) {
 	const getCampaignInfo = async (url) => {
 		const browser = await puppeteer.launch({
-			args: chromium.args,
+			args: [
+				...chrome.args,
+				"--hide-scrollbars",
+				"--disable-web-security",
+				"--start-maximized",
+			],
 			headless: true,
-			executablePath: process.env.PATH || (await chromium.executablePath),
+			executablePath: process.env.PATH || (await chrome.executablePath),
+			defaultViewport: chrome.defaultViewport,
+			ignoreHTTPSErrors: true,
 		});
 		const page = await browser.newPage();
-		await page.goto(decodeURIComponent(url));
+		await page.goto(url);
 		const goal = await page.$eval(".text-stat.text-stat-title", (e) =>
 			e.innerText.split(" ")
 		);
@@ -84,7 +91,7 @@ export default async function handler(req, res) {
 		return;
 	}
 	const { goal, raised, formatted } = await getCampaignInfo(
-		encodeURIComponent(req.query.url.replace('"', ""))
+		req.query.url.replace('"', "")
 	);
 	res.status(200).json({ goal, raised, formatted });
 }
