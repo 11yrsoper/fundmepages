@@ -3,11 +3,11 @@ import puppeteer from "puppeteer-core";
 // import { getCampaignInfo } from "../../external-functions/gofundme.js";
 
 export default async function handler(req, res) {
-	const getCampaignInfo = (url) => {
+	const getCampaignInfo = async (url) => {
 		const browser = await puppeteer.launch({
-			args: process.env.PATH || chromium.args,
+			args: chromium.args,
 			headless: true,
-			executablePath: await chromium.executablePath,
+			executablePath: process.env.PATH || (await chromium.executablePath),
 		});
 		const page = await browser.newPage();
 		await page.goto(decodeURIComponent(url));
