@@ -1,6 +1,6 @@
 // import express from "express";
 // import apicache from "apicache";
-import { getCampaignInfo } from "./gofundme.js";
+import { getCampaignInfo } from "../../external-functions";
 
 // let cache = apicache.middleware;
 
