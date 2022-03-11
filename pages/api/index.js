@@ -2,9 +2,6 @@
 // import apicache from "apicache";
 import { getCampaignInfo } from "./gofundme.js";
 
-const app = express();
-app.set("json spaces", 3);
-app.set("trust proxy", 1);
 // let cache = apicache.middleware;
 
 export default async function handler(req, res) {
