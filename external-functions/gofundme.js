@@ -1,5 +1,3 @@
-import puppeteer from "puppeteer";
-
 async function getCampaignInfo(url) {
 	const browser = await puppeteer.launch({
 		headless: !false,
