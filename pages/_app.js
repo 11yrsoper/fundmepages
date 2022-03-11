@@ -2,6 +2,6 @@ import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
 	return <Component {...pageProps} />;
-} //t
+} //ts
 
 export default MyApp;
