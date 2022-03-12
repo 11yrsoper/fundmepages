@@ -99,5 +99,5 @@ export default async function handler(req, res) {
 	// );
 
 	const { title } = await getCampaignInfo(req.query.url.replace('"', ""));
-	res.status(200).json({ goal, raised, formatted });
+	res.status(200).json({ title });
 }
