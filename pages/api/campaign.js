@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 			ignoreHTTPSErrors: true,
 		});
 		const page = await browser.newPage();
-		await page.goto(url);
+		await page.goto(decodeURIComponent(url));
 		const title = await page.title();
 		// const goal = await page.$eval(".text-stat.text-stat-title", (e) =>
 		// 	e.innerText.split(" ")
