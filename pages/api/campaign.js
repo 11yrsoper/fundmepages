@@ -86,10 +86,10 @@ export default async function handler(req, res) {
 	// return { title };
 	// };
 
-	if (!!!req.query.url) {
-		res.status(418).send("<h1>You forgot the URL dummy</h1>");
-		return;
-	}
+	// if (!!!req.query.url) {
+	// 	res.status(418).send("<h1>You forgot the URL dummy</h1>");
+	// 	return;
+	// }
 	res.setHeader(
 		"Cache-Control",
 		`public, immutable, no-transform, s-maxage=31536000, max-age=31536000`
