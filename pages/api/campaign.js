@@ -98,6 +98,6 @@ export default async function handler(req, res) {
 	// 	req.query.url.replace('"', "")
 	// );
 
-	const { title } = await getCampaignInfo(req.query.url.replace('"', ""));
-	res.status(200).json({ title });
+	// const { title } = await getCampaignInfo(req.query.url.replace('"', ""));
+	res.status(200).json({ hello: "world" });
 }
